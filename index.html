@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon espace SEG</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f6f8b">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#f3f5f7;--card:#fff;--tx:#14213d;--mut:#5f6b7a;--ac:#1f6f8b;--ac2:#e07a1f;--bd:#dde2e8;--ok:#2b8a3e;--bad:#c92a2a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1722;--card:#18222f;--tx:#e8edf3;--mut:#9aa7b6;--ac:#5bb3d0;--ac2:#f0a04b;--bd:#2a3646;--ok:#69db7c;--bad:#ff8787}}
+:root[data-theme="dark"]{--bg:#0f1722;--card:#18222f;--tx:#e8edf3;--mut:#9aa7b6;--ac:#5bb3d0;--ac2:#f0a04b;--bd:#2a3646;--ok:#69db7c;--bad:#ff8787}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:8px 0 2px}
+.sub{color:var(--mut);margin:0 0 14px;font-size:.9rem}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px}
+.tabs button{flex:1;white-space:nowrap;padding:10px 12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font:inherit;cursor:pointer}
+.tabs button.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:14px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--bd);vertical-align:top}
+th{color:var(--mut);font-weight:600}
+.num{font-variant-numeric:tabular-nums;font-weight:700}
+.low{color:var(--bad)}.good{color:var(--ok)}
+.empty{color:var(--mut);padding:8px 0}
+select,input{font:inherit;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);max-width:100%}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.row input,.row select{flex:1 1 130px}
+button.act{padding:9px 14px;border:0;border-radius:8px;background:var(--ac2);color:#14213d;font:inherit;font-weight:700;cursor:pointer}
+button.pub{background:var(--ac);color:#fff}
+button.pub:disabled{opacity:.45;cursor:default}
+button.x{border:0;background:none;color:var(--bad);font-size:1.1rem;cursor:pointer;padding:0 6px}
+.adm{border-left:4px solid var(--ac2);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.adm p{margin:0;font-size:.9rem}
+.big{font-size:1.6rem;font-weight:800}
+</style>
+</head>
+<body>
+<main>
+<h1>Mon espace SEG</h1>
+<p class="sub" id="upd"></p>
+<div id="app"></div>
+</main>
+<script>
+let D={updated:"",students:[],notes:[],devoirs:[],absences:[]};const LS="seg_admin_draft";
+let tab="notes",admin=false,dirty=false,sel="all",msg="";
+const $=id=>document.getElementById(id);
+const g=id=>($(id)?$(id).value.trim():"");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const uid=()=>Math.random().toString(36).slice(2,8);
+const today=()=>new Date().toISOString().slice(0,10);
+const sname=id=>(D.students.find(s=>s.id===id)||{name:"?"}).name;
+const fd=d=>d?d.split("-").reverse().join("/"):"";
+const opts=()=>[...D.students].sort((a,b)=>a.name.localeCompare(b.name,"fr")).map(s=>'<option value="'+s.id+'">'+esc(s.name)+'</option>').join("");
+const del=(k,id)=>admin?'<button class="x" data-a="del" data-k="'+k+'" data-i="'+id+'" title="Supprimer">✕</button>':"";
+
+function vNotes(){
+  const rows=D.notes.filter(n=>sel==="all"||n.sid===sel).sort((a,b)=>b.date.localeCompare(a.date));
+  let avg="";
+  if(sel!=="all"&&rows.length){
+    const m=rows.reduce((t,n)=>t+n.score/n.max*20,0)/rows.length;
+    avg='<p>Moyenne sur 20 : <span class="big">'+m.toFixed(2).replace(".",",")+'</span></p>';
+  }
+  let h='<div class="card"><select id="flt"><option value="all">Toute la classe</option>'+opts()+'</select>'+avg;
+  h+=rows.length?'<div class="scroll"><table><tr><th>Étudiant</th><th>Matière</th><th>Interro</th><th>Note</th><th>Date</th><th></th></tr>'+rows.map(n=>'<tr><td>'+esc(sname(n.sid))+'</td><td>'+esc(n.subject)+'</td><td>'+esc(n.title)+'</td><td class="num '+(n.score/n.max<.5?"low":"good")+'">'+n.score+'/'+n.max+'</td><td>'+fd(n.date)+'</td><td>'+del("notes",n.id)+'</td></tr>').join("")+'</table></div>':'<p class="empty">Aucune note pour le moment.</p>';
+  h+='</div>';
+  if(admin)h+='<div class="card"><b>Ajouter une note</b><div class="row"><select id="n_s">'+opts()+'</select><input id="n_m" placeholder="Matière"><input id="n_t" placeholder="Intitulé (ex. Interro 2)"><input id="n_sc" type="number" step="0.25" placeholder="Note"><input id="n_x" type="number" value="20" placeholder="Sur"><input id="n_d" type="date" value="'+today()+'"></div><div class="row"><button class="act" data-a="addn">Ajouter la note</button></div></div>';
+  return h;
+}
+function vDevoirs(){
+  const rows=[...D.devoirs].sort((a,b)=>a.due.localeCompare(b.due));
+  let h='<div class="card">';
+  h+=rows.length?'<div class="scroll"><table><tr><th>À rendre le</th><th>Matière</th><th>Devoir</th><th></th></tr>'+rows.map(d=>'<tr><td class="num">'+fd(d.due)+'</td><td>'+esc(d.subject)+'</td><td>'+esc(d.title)+'</td><td>'+del("devoirs",d.id)+'</td></tr>').join("")+'</table></div>':'<p class="empty">Aucun devoir à rendre.</p>';
+  h+='</div>';
+  if(admin)h+='<div class="card"><b>Ajouter un devoir</b><div class="row"><input id="d_m" placeholder="Matière"><input id="d_t" placeholder="Devoir à faire"><input id="d_d" type="date" value="'+today()+'"></div><div class="row"><button class="act" data-a="addd">Ajouter le devoir</button></div></div>';
+  return h;
+}
+function vAbs(){
+  const tot=D.students.map(s=>({s,h:D.absences.filter(a=>a.sid===s.id).reduce((t,a)=>t+a.hours,0)})).sort((a,b)=>b.h-a.h);
+  let h='<div class="card"><b>Total par étudiant</b><div class="scroll"><table><tr><th>Étudiant</th><th>Heures d’absence</th></tr>'+tot.map(t=>'<tr><td>'+esc(t.s.name)+'</td><td class="num '+(t.h>=10?"low":"")+'">'+t.h+' h</td></tr>').join("")+'</table></div></div>';
+  const rows=[...D.absences].sort((a,b)=>b.date.localeCompare(a.date));
+  h+='<div class="card"><b>Détail</b>'+(rows.length?'<div class="scroll"><table><tr><th>Date</th><th>Étudiant</th><th>Heures</th><th>Motif</th><th></th></tr>'+rows.map(a=>'<tr><td>'+fd(a.date)+'</td><td>'+esc(sname(a.sid))+'</td><td class="num">'+a.hours+' h</td><td>'+esc(a.reason||"")+'</td><td>'+del("absences",a.id)+'</td></tr>').join("")+'</table></div>':'<p class="empty">Aucune absence enregistrée.</p>')+'</div>';
+  if(admin)h+='<div class="card"><b>Ajouter une absence</b><div class="row"><select id="b_s">'+opts()+'</select><input id="b_h" type="number" step="0.5" placeholder="Heures"><input id="b_d" type="date" value="'+today()+'"><input id="b_r" placeholder="Motif (facultatif)"></div><div class="row"><button class="act" data-a="addb">Ajouter l’absence</button></div></div>';
+  return h;
+}
+function vStud(){
+  let h='<div class="card"><b>Étudiants de la classe ('+D.students.length+')</b><table>'+[...D.students].sort((a,b)=>a.name.localeCompare(b.name,"fr")).map(s=>'<tr><td>'+esc(s.name)+'</td><td>'+del("students",s.id)+'</td></tr>').join("")+'</table></div>';
+  if(admin)h+='<div class="card"><b>Ajouter des étudiants</b><p class="sub">Un nom par ligne : tu peux coller toute la liste de la classe d’un coup.</p><textarea id="s_n" rows="6" style="width:100%;font:inherit;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)" placeholder="Nom Prénom"></textarea><div class="row"><button class="act" data-a="adds">Ajouter</button></div></div>';
+  return h;
+}
+function render(){
+  $("upd").textContent=D.updated?"Dernière mise à jour : "+D.updated:"Pas encore mis à jour";
+  const T=[["notes","Notes"],["devoirs","Devoirs"],["abs","Absences"],["stud","Étudiants"]];
+  let h='';
+  if(admin)h+='<div class="card adm"><p><b>Mode administrateur.</b> Après tes changements, exporte le fichier puis envoie-le sur GitHub.</p><div class="row"><button class="act pub" data-a="pub" '+(dirty?"":"disabled")+'>Exporter data.json</button><button class="act" data-a="reset">Repartir de la version publiée</button></div></div>';
+  if(msg)h+='<p class="sub">'+esc(msg)+'</p>';
+  h+='<div class="tabs">'+T.map(t=>'<button class="'+(tab===t[0]?"on":"")+'" data-a="tab" data-v="'+t[0]+'">'+t[1]+'</button>').join("")+'</div>';
+  h+=tab==="notes"?vNotes():tab==="devoirs"?vDevoirs():tab==="abs"?vAbs():vStud();
+  h+='<p style="text-align:center"><button class="x" style="color:var(--mut);font-size:.85rem" data-a="adm">'+(admin?"Quitter l’espace administrateur":"Espace administrateur")+'</button></p>';$("app").innerHTML=h;
+  if($("flt"))$("flt").value=sel;
+}
+function touch(){dirty=true;msg="";try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){}render();}
+function exportData(){
+  D.updated=new Date().toLocaleDateString("fr-FR");
+  const b=new Blob([JSON.stringify(D,null,1)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="data.json";document.body.appendChild(a);a.click();a.remove();
+  msg="Fichier data.json téléchargé. Envoie-le maintenant sur GitHub pour que la classe voie les changements.";render();
+}
+async function load(){
+  let ok=false;
+  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(r.ok){D=await r.json();ok=true;}}catch(e){}
+  if(!ok)msg="Impossible de charger les données. Vérifie ta connexion.";
+  try{if(localStorage.getItem("seg_admin")==="1"){admin=true;const d=localStorage.getItem(LS);if(d){D=JSON.parse(d);dirty=true;}}}catch(e){}
+  render();
+  if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-a]");if(!b)return;
+  const a=b.dataset.a;
+  if(a==="tab"){tab=b.dataset.v;render();}
+  else if(a==="pub")exportData();
+  else if(a==="adm"){admin=!admin;try{localStorage.setItem("seg_admin",admin?"1":"0")}catch(e){}render();}
+  else if(!admin)return;
+  else if(a==="reset"){try{localStorage.removeItem(LS)}catch(e){}location.reload();}
+  else if(a==="del"){const k=b.dataset.k;D[k]=D[k].filter(x=>x.id!==b.dataset.i);touch();}
+  else if(a==="addn"){const sc=parseFloat(g("n_sc")),mx=parseFloat(g("n_x"))||20;if(isNaN(sc)||!g("n_t"))return;D.notes.push({id:uid(),sid:g("n_s"),subject:g("n_m"),title:g("n_t"),score:sc,max:mx,date:g("n_d")||today()});touch();}
+  else if(a==="addd"){if(!g("d_t"))return;D.devoirs.push({id:uid(),subject:g("d_m"),title:g("d_t"),due:g("d_d")||today()});touch();}
+  else if(a==="addb"){const h=parseFloat(g("b_h"));if(isNaN(h))return;D.absences.push({id:uid(),sid:g("b_s"),hours:h,date:g("b_d")||today(),reason:g("b_r")});touch();}
+  else if(a==="adds"){const L=($("s_n")?$("s_n").value:"").split("\n").map(x=>x.trim()).filter(Boolean);if(!L.length)return;L.forEach(n=>D.students.push({id:uid(),name:n}));touch();}
+});
+document.addEventListener("change",e=>{if(e.target.id==="flt"){sel=e.target.value;render();}});
+load();
+</script>
+</body>
+</html>
