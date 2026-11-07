@@ -1,1 +1,460 @@
-{"updated":"","students":[],"notes":[],"devoirs":[],"absences":[]}
+{
+ "updated": "07/11/2026",
+ "students": [
+  {
+   "id": "xkx5d3",
+   "name": "ADEOYE ABDUL KADER KOUADIOIO JEAN ENOCK"
+  },
+  {
+   "id": "mcv84u",
+   "name": "ADIA CHRIST ELIEL ELNATHAN"
+  },
+  {
+   "id": "fqbe5g",
+   "name": "ADIA AKISSI YASMINE"
+  },
+  {
+   "id": "r7tmdl",
+   "name": "AÏMAVO KOUAME STEVEN YANNICK"
+  },
+  {
+   "id": "2aoges",
+   "name": "AKE LOBA LOUIS MARIE"
+  },
+  {
+   "id": "l3ovow",
+   "name": "AKE NAOMI NELLY SAMIRA"
+  },
+  {
+   "id": "sywfrd",
+   "name": "AKMEL MEMEL CLAUDE CESAR"
+  },
+  {
+   "id": "7l2o6d",
+   "name": "ATTA CHONOU CHRIST EMMANUEL"
+  },
+  {
+   "id": "050etn",
+   "name": "BAKAYOKO AICHA"
+  },
+  {
+   "id": "pi3nxz",
+   "name": "BALOITCHA MEDESSE NORBERT"
+  },
+  {
+   "id": "88f25u",
+   "name": "BAMBA CHEICK ABOU"
+  },
+  {
+   "id": "ad0g5a",
+   "name": "BOLOU CHRIST ISRAEL"
+  },
+  {
+   "id": "gfdp7o",
+   "name": "BOSSO ANOMAN MAKISSI ROSANE SAMIRA"
+  },
+  {
+   "id": "kwpz8o",
+   "name": "BOUARE FATIMATOU ZAHARAHOU"
+  },
+  {
+   "id": "03rdxr",
+   "name": "DOGBO NANDJUY STACHYS EPHRAIM"
+  },
+  {
+   "id": "lii18e",
+   "name": "DOSSO ALIMA"
+  },
+  {
+   "id": "9kiiyc",
+   "name": "DOUA ANGE NORGIL"
+  },
+  {
+   "id": "n6w46i",
+   "name": "GRAGNON OPRI RINNA JOCELINE"
+  },
+  {
+   "id": "b3996u",
+   "name": "GRAH ORY ANGE ELIE"
+  },
+  {
+   "id": "oozd6u",
+   "name": "GREKOU OPELY GUY LANDRY"
+  },
+  {
+   "id": "bx550n",
+   "name": "GUEI MONDE ELIE"
+  },
+  {
+   "id": "1lwujf",
+   "name": "GUEÏ MARIE-LAUREN"
+  },
+  {
+   "id": "4spcd3",
+   "name": "IBEH EBERECHI PRINCESSES MARIE-PASCALE"
+  },
+  {
+   "id": "nfjkam",
+   "name": "IDIANE MARIETOU"
+  },
+  {
+   "id": "4dy5t7",
+   "name": "KEI GNONSESIEKAN TRIPHENE"
+  },
+  {
+   "id": "w8s9jl",
+   "name": "KEITA ADIZATOU"
+  },
+  {
+   "id": "22rqf7",
+   "name": "KEITA SIRA"
+  },
+  {
+   "id": "2ns3vr",
+   "name": "KOFFI AKISSI RUTH"
+  },
+  {
+   "id": "5lh9yx",
+   "name": "KOFFI AMAN ADJOUA ANNE MARIE"
+  },
+  {
+   "id": "p5jxx4",
+   "name": "KOFFI ARIELLE JUNIOR"
+  },
+  {
+   "id": "3m5f7q",
+   "name": "KOFFI AUXYNA DOLORES AURORE"
+  },
+  {
+   "id": "504jcy",
+   "name": "KOFFI MOKOA DJENEBOU"
+  },
+  {
+   "id": "fpuvvi",
+   "name": "KOFFI AHOU GRACE MARIE FAUSTINE"
+  },
+  {
+   "id": "lknc61",
+   "name": "KOFI BLA GRACE ANISNOVANE"
+  },
+  {
+   "id": "gcg1n9",
+   "name": "KOKO BOGA DOUDOU CHRIST MOREL"
+  },
+  {
+   "id": "b5h6az",
+   "name": "KOKOA ANTHELME DELORS"
+  },
+  {
+   "id": "8l0fnz",
+   "name": "KOKOI ADA FRANCOISE DORIANE"
+  },
+  {
+   "id": "64dfp2",
+   "name": "KONAN AMENAN URIELLE SEPHORA"
+  },
+  {
+   "id": "1zqavv",
+   "name": "KONAN KOUAKOU KAN JUNIOR"
+  },
+  {
+   "id": "qey8pz",
+   "name": "KONAN MOYHIE ANGE JOHAN"
+  },
+  {
+   "id": "z6broo",
+   "name": "KONAN RENI ELOHIM"
+  },
+  {
+   "id": "rijurf",
+   "name": "KONATE ALLASSANE"
+  },
+  {
+   "id": "31yfq5",
+   "name": "KONATE DJENEBOU"
+  },
+  {
+   "id": "1mbdza",
+   "name": "KONATE KADY RAEL"
+  },
+  {
+   "id": "ykuo96",
+   "name": "KONE NESMON ULD"
+  },
+  {
+   "id": "lqjcua",
+   "name": "KONE SAMIRA FANTA"
+  },
+  {
+   "id": "hn0xf1",
+   "name": "KONE TIEMOKO CHEICK"
+  },
+  {
+   "id": "zen338",
+   "name": "KORE BAI JEAN DAVID"
+  },
+  {
+   "id": "kw40cr",
+   "name": "KORE ZENASSA MARIE AUDE ANDREA"
+  },
+  {
+   "id": "vte1gk",
+   "name": "KOSSONOOU KOFFI ULRICH"
+  },
+  {
+   "id": "nvschg",
+   "name": "KOSSONOU KOUAME CHRISTYVAN"
+  },
+  {
+   "id": "u37sha",
+   "name": "KOSSONOU YAO ANGE"
+  },
+  {
+   "id": "oqaa78",
+   "name": "KOUA AKLOUDJOUE JEAN EZEKIEL"
+  },
+  {
+   "id": "ez9idz",
+   "name": "KOUAKOU AUDE SARA YETY"
+  },
+  {
+   "id": "zjdzu8",
+   "name": "KOUAKOU N'GUESSAN CHRIS BRYAN"
+  },
+  {
+   "id": "z7ml5l",
+   "name": "KOUAME AFFIA MARIE YASMINE"
+  },
+  {
+   "id": "crv1uq",
+   "name": "KOUAME DJE BIJOU"
+  },
+  {
+   "id": "imoojs",
+   "name": "KOUAME EPOKOU ANGE URIEL"
+  },
+  {
+   "id": "wa2sub",
+   "name": "KOUAME HARIEL JEAN MICKAEL"
+  },
+  {
+   "id": "pqectv",
+   "name": "KOUAME JEAN CHRIST"
+  },
+  {
+   "id": "tifenu",
+   "name": "KOUAME LOU DJESSAN EMMANUELLE HADASSA"
+  },
+  {
+   "id": "jw0paz",
+   "name": "KOUAME N'GANZA SEPHORA"
+  },
+  {
+   "id": "kv8cox",
+   "name": "KOUASSI AFFOUE NADEGE"
+  },
+  {
+   "id": "wxs9hs",
+   "name": "KOUKRA LOKO JOSIAS CHRIS YANNICK"
+  },
+  {
+   "id": "8yia2f",
+   "name": "KOULIBALY TANIDIA GNELE SHAKIRA"
+  },
+  {
+   "id": "cb6w0k",
+   "name": "KOUMALAN EUNICE ESTHER"
+  },
+  {
+   "id": "ujmeht",
+   "name": "LAGO ANGE LARRY"
+  },
+  {
+   "id": "hg7qzh",
+   "name": "LOHOUES MELEME ANNE MARIE"
+  },
+  {
+   "id": "ug8mh9",
+   "name": "LOROUGNON BEDY TRAZIE IVANN"
+  },
+  {
+   "id": "w2lx7d",
+   "name": "MAHI MAHI JULES FERRY"
+  },
+  {
+   "id": "f2o47w",
+   "name": "M'BO CHIADON NAOMI"
+  },
+  {
+   "id": "sz21xz",
+   "name": "MIDIOUR SAMY BONAVENTURE"
+  },
+  {
+   "id": "dgm41c",
+   "name": "M'PONON BOTO EVE MICAELLA"
+  },
+  {
+   "id": "xdg4kx",
+   "name": "N'DRE CYRRILIST BINJAMIN"
+  },
+  {
+   "id": "v2odfo",
+   "name": "NEAN GAHIE EMMANUEL YOHAN"
+  },
+  {
+   "id": "zdm5jt",
+   "name": "N'GORAN ADJOUA MARIE ESTHER"
+  },
+  {
+   "id": "1b20ci",
+   "name": "N'GORAN AKISSI ROXAN"
+  },
+  {
+   "id": "ourd59",
+   "name": "N'GOU ADON EMMA"
+  },
+  {
+   "id": "kly23u",
+   "name": "N'GUESSAN ANGE RUTH"
+  },
+  {
+   "id": "movklq",
+   "name": "N'GUESSAN KOFFI ELYSEE ANGE CORNEILLE"
+  },
+  {
+   "id": "wu1nvq",
+   "name": "NIKIEMA SALIF"
+  },
+  {
+   "id": "jj6x36",
+   "name": "OUATTARA FANTA"
+  },
+  {
+   "id": "d9wlcv",
+   "name": "OUATTARA SINAKAPOULOTCHIN ROSE HERMINE"
+  },
+  {
+   "id": "rd3ti2",
+   "name": "OUEDRAOGO AMINATA"
+  },
+  {
+   "id": "grlm5d",
+   "name": "OUEDRAOGO NOUFFOU CHEICK YVANN"
+  },
+  {
+   "id": "5qhbkf",
+   "name": "SALBRE AKISSI AICHA"
+  },
+  {
+   "id": "ft9ctl",
+   "name": "SANOGO AWA SARAH"
+  },
+  {
+   "id": "0pnii8",
+   "name": "SANUSI MOUHAMMAD FAYAD OYEWOLE"
+  },
+  {
+   "id": "68gbiv",
+   "name": "SEKA YAPI JOEL"
+  },
+  {
+   "id": "3yh7gm",
+   "name": "SEKA APO DANIEL"
+  },
+  {
+   "id": "8fk0pt",
+   "name": "SIALOU AYA SARAH MARIE CECILE"
+  },
+  {
+   "id": "4up1n0",
+   "name": "SIDIBE TENIN"
+  },
+  {
+   "id": "wdl181",
+   "name": "SIDIBE TOUMANY"
+  },
+  {
+   "id": "d29jmf",
+   "name": "SIDIBE AWA"
+  },
+  {
+   "id": "zsuhcp",
+   "name": "SORGHO HABIBOU"
+  },
+  {
+   "id": "j0z5gr",
+   "name": "SORO AMINATA"
+  },
+  {
+   "id": "m32pwo",
+   "name": "TAFIN GUY DEMOREL"
+  },
+  {
+   "id": "636jb0",
+   "name": "TAHOU BONMANIN ARMEL DAVID"
+  },
+  {
+   "id": "6ba986",
+   "name": "TAKI ADJOBA MARIE-AUDE"
+  },
+  {
+   "id": "ndqq2z",
+   "name": "TANO AHISSIA RUTH NATACHA"
+  },
+  {
+   "id": "hean2k",
+   "name": "TANOH AMOIKON ANGE JEAN-BAPTISTE"
+  },
+  {
+   "id": "i3ge5o",
+   "name": "TRA LOU DEBORA ELODIE"
+  },
+  {
+   "id": "15czuh",
+   "name": "TRAORE BRAHIM"
+  },
+  {
+   "id": "2b4exp",
+   "name": "VALEAN LEONTINE"
+  },
+  {
+   "id": "809sqs",
+   "name": "WADJA ESSIKA EPIPHANE MARIE-ISRAEL"
+  },
+  {
+   "id": "t5glq6",
+   "name": "YAO ADJOUA ANGE MYRIAM YASMINE"
+  },
+  {
+   "id": "qobprp",
+   "name": "YAO AKISSI ANDREA CHANELLE"
+  },
+  {
+   "id": "wuqxd1",
+   "name": "YEO SEGNENINTENIN MARIAM"
+  },
+  {
+   "id": "gv7wzg",
+   "name": "YESSOUFOU KAOSSARAH"
+  },
+  {
+   "id": "36agq6",
+   "name": "YETONGNON ADJO MARIE DOMINIQUE ESTHER"
+  },
+  {
+   "id": "ubmixd",
+   "name": "ZANA ROKY DIHAMA"
+  },
+  {
+   "id": "1rsvgj",
+   "name": "ZANRE ABDOUL-RAZAK"
+  },
+  {
+   "id": "0xbv1o",
+   "name": "ZEBLI BOUEDOU YANN JORIS"
+  }
+ ],
+ "notes": [],
+ "devoirs": [],
+ "absences": []
+}
