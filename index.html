@@ -53,6 +53,17 @@ button.x{border:0;background:none;color:var(--bad);font-size:1.1rem;cursor:point
 @keyframes sh{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
 .shake{animation:sh .35s}
 @media (prefers-reduced-motion:reduce){.shake{animation:none}}
+.pubbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px 22px;border:0;border-radius:14px;font:700 1.05rem system-ui,sans-serif;cursor:pointer;color:#fff;background:linear-gradient(135deg,#1f6f8b,#2b94b8);box-shadow:0 6px 18px rgba(31,111,139,.35);transition:transform .15s,box-shadow .15s,background .3s}
+.pubbtn:active{transform:scale(.97)}
+.pubbtn:disabled{opacity:.5;cursor:default;box-shadow:none}
+.pubbtn.ok{background:linear-gradient(135deg,#2b8a3e,#40a65a)}
+.pubbtn.ok:disabled{opacity:1}
+.pubbtn.err{background:linear-gradient(135deg,#c92a2a,#e04b4b)}
+.pubbtn svg{width:22px;height:22px;flex:none}
+.spin{animation:rot .9s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+.ghost{background:none;border:1px solid var(--bd);color:var(--tx);border-radius:10px;padding:8px 12px;font:inherit;font-size:.85rem;cursor:pointer}
 </style>
 </head>
 <body>
@@ -63,7 +74,7 @@ button.x{border:0;background:none;color:var(--bad);font-size:1.1rem;cursor:point
 </main>
 <script>
 let D={updated:"",students:[],notes:[],devoirs:[],absences:[]};const LS="seg_admin_draft";
-let tab="notes",admin=false,dirty=false,sel="all",msg="";
+let pst="idle",tab="notes",admin=false,dirty=false,sel="all",msg="";
 const $=id=>document.getElementById(id);
 const g=id=>($(id)?$(id).value.trim():"");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -112,7 +123,7 @@ function render(){
   $("upd").textContent=D.updated?"Dernière mise à jour : "+D.updated:"Pas encore mis à jour";
   const T=[["notes","Notes"],["devoirs","Devoirs"],["abs","Absences"],["stud","Étudiants"]];
   let h='';
-  if(admin)h+='<div class="card adm"><p><b>Mode administrateur.</b> Après tes changements, exporte le fichier puis envoie-le sur GitHub.</p><div class="row"><button class="act pub" data-a="pub" '+(dirty?"":"disabled")+'>Exporter data.json</button><button class="act" data-a="reset">Repartir de la version publiée</button></div></div>';
+  if(admin)h+='<div class="card adm" style="display:block"><p><b>Mode administrateur.</b> '+(dirty?"Tu as des changements non publiés.":"Tout est publié.")+'</p><div style="margin-top:12px"><button class="pubbtn '+pst+'" data-a="publish" '+((pst==="busy"||pst==="ok"||(pst==="idle"&&!dirty))?"disabled":"")+'>'+PUBICON[pst]+'<span>'+PUBLBL[pst]+'</span></button></div><div class="row"><button class="ghost" data-a="gh">Réglages GitHub</button><button class="ghost" data-a="exp">Exporter data.json</button><button class="ghost" data-a="reset">Repartir de la version publiée</button></div></div>';
   if(msg)h+='<p class="sub">'+esc(msg)+'</p>';
   h+='<div class="tabs">'+T.map(t=>'<button class="'+(tab===t[0]?"on":"")+'" data-a="tab" data-v="'+t[0]+'">'+t[1]+'</button>').join("")+'</div>';
   h+=tab==="notes"?vNotes():tab==="devoirs"?vDevoirs():tab==="abs"?vAbs():vStud();
@@ -153,6 +164,51 @@ async function toggleAdmin(){
   if(ok){admin=true;msg="";try{localStorage.setItem("seg_admin","1");const d=localStorage.getItem(LS);if(d){D=JSON.parse(d);dirty=true;}}catch(e){}}
   render();
 }
+const OWNER="tanoha496-oss",REPO="mon-espace-seg",BR="main",FILE="data.json";
+const SV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+const PUBICON={idle:SV+'<path d="M12 16V4"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg>',busy:SV.replace("<svg ","<svg class=\"spin\" ")+'<path d="M12 3a9 9 0 1 0 9 9"/></svg>',ok:SV+'<path d="M5 13l4 4L19 7"/></svg>',err:SV+'<path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg>'};
+const PUBLBL={idle:"Publier pour la classe",busy:"Publication…",ok:"Publié",err:"Réessayer"};
+function b64(s){const b=new TextEncoder().encode(s);let r="";b.forEach(x=>r+=String.fromCharCode(x));return btoa(r);}
+function askToken(){
+  return new Promise(res=>{
+    const o=document.createElement("div");o.className="ov";
+    let has="";try{has=localStorage.getItem("seg_gh")||"";}catch(e){}
+    o.innerHTML='<div class="pad" role="dialog" aria-label="Connecter GitHub"><h2>Connecter GitHub</h2><p>Colle ta clé d’accès. Elle reste sur cet appareil.</p><input id="gh_t" type="password" autocomplete="off" placeholder="github_pat_…" style="width:100%;margin:0 0 14px"><div class="keys" style="grid-template-columns:1fr"><button class="ok" data-k="ok" style="font-size:1.05rem;height:52px">Enregistrer</button></div>'+(has?'<button class="cancel" data-k="del">Supprimer la clé de cet appareil</button>':"")+'<button class="cancel" data-k="x">Annuler</button></div>';
+    document.body.appendChild(o);
+    const end=r=>{o.remove();res(r);};
+    o.addEventListener("click",e=>{
+      const b=e.target.closest("[data-k]");if(!b)return;const k=b.dataset.k;
+      if(k==="x")end("");
+      else if(k==="del"){try{localStorage.removeItem("seg_gh");}catch(x){}end("");}
+      else if(k==="ok"){const v=$("gh_t").value.trim();if(!v){$("gh_t").focus();return;}try{localStorage.setItem("seg_gh",v);}catch(x){}end(v);}
+    });
+    $("gh_t").focus();
+  });
+}
+async function publishGH(){
+  let tk="";try{tk=localStorage.getItem("seg_gh")||"";}catch(e){}
+  if(!tk){tk=await askToken();if(!tk){render();return;}}
+  pst="busy";msg="";render();
+  const H={Authorization:"Bearer "+tk,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};
+  const url="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/"+FILE;
+  try{
+    D.updated=new Date().toLocaleDateString("fr-FR");
+    const body=JSON.stringify(D,null,1);
+    const g=await fetch(url+"?ref="+BR,{headers:H,cache:"no-store"});
+    let sha;
+    if(g.ok){sha=(await g.json()).sha;}else if(g.status!==404)throw g;
+    const r=await fetch(url,{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify({message:"Mise à jour des données",content:b64(body),sha:sha,branch:BR})});
+    if(!r.ok)throw r;
+    dirty=false;
+    try{const j=JSON.stringify(D);localStorage.setItem(LS,j);localStorage.setItem("seg_pub",j);}catch(e){}
+    pst="ok";msg="Publié ! La classe verra les changements dans une à deux minutes.";
+  }catch(e){
+    pst="err";const st=e&&e.status;
+    msg=(st===401||st===403)?"GitHub a refusé la clé. Vérifie-la dans Réglages GitHub.":st===404?"Dépôt introuvable : vérifie les droits de la clé.":"La publication a échoué. Vérifie ta connexion et réessaie.";
+  }
+  render();
+  if(pst==="ok")setTimeout(()=>{pst="idle";render();},4000);
+}
 function exportData(){
   D.updated=new Date().toLocaleDateString("fr-FR");
   const b=new Blob([JSON.stringify(D,null,1)],{type:"application/json"});
@@ -163,7 +219,7 @@ async function load(){
   let ok=false;
   try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(r.ok){D=await r.json();ok=true;}}catch(e){}
   if(!ok)msg="Impossible de charger les données. Vérifie ta connexion.";
-  try{if(localStorage.getItem("seg_admin")==="1"){admin=true;const d=localStorage.getItem(LS);if(d){D=JSON.parse(d);dirty=true;}}}catch(e){}
+  try{if(localStorage.getItem("seg_admin")==="1"){admin=true;const d=localStorage.getItem(LS);if(d){D=JSON.parse(d);dirty=d!==localStorage.getItem("seg_pub");}}}catch(e){}
   render();
   if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
@@ -171,10 +227,12 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-a]");if(!b)return;
   const a=b.dataset.a;
   if(a==="tab"){tab=b.dataset.v;render();}
-  else if(a==="pub")exportData();
+  else if(a==="exp")exportData();
   else if(a==="adm"){toggleAdmin();}
   else if(!admin)return;
-  else if(a==="reset"){try{localStorage.removeItem(LS)}catch(e){}location.reload();}
+  else if(a==="reset"){try{localStorage.removeItem(LS);localStorage.removeItem("seg_pub")}catch(e){}location.reload();}
+  else if(a==="publish"){if(pst!=="busy")publishGH();}
+  else if(a==="gh"){askToken().then(v=>{msg=v?"Clé enregistrée sur cet appareil.":"";render();});}
   else if(a==="del"){const k=b.dataset.k;D[k]=D[k].filter(x=>x.id!==b.dataset.i);touch();}
   else if(a==="addn"){const sc=parseFloat(g("n_sc")),mx=parseFloat(g("n_x"))||20;if(isNaN(sc)||!g("n_t"))return;D.notes.push({id:uid(),sid:g("n_s"),subject:g("n_m"),title:g("n_t"),score:sc,max:mx,date:g("n_d")||today()});touch();}
   else if(a==="addd"){if(!g("d_t"))return;D.devoirs.push({id:uid(),subject:g("d_m"),title:g("d_t"),due:g("d_d")||today()});touch();}
