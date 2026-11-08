@@ -110,10 +110,10 @@ function vNotes(){
     avg='<p>Moyenne sur 20 : <span class="big">'+m.toFixed(2).replace(".",",")+'</span></p>';
   }
   let h='<div class="card"><select id="flt"><option value="all">Toute la classe</option>'+opts()+'</select>'+avg;
-  h+=rows.length?'<div class="scroll"><table><tr><th>Étudiant</th><th>Matière</th><th>Interro</th><th>Docteur</th><th>Note</th><th>Date</th><th></th></tr>'+rows.map(n=>'<tr><td>'+esc(sname(n.sid))+'</td><td>'+esc(n.subject)+'</td><td>'+esc(n.title)+'</td><td>'+esc(n.teacher||"")+'</td><td>'+esc(n.teacher||"")+'</td><td class="num '+(n.score/n.max<.5?"low":"good")+'">'+n.score+'/'+n.max+'</td><td>'+fd(n.date)+'</td><td>'+del("notes",n.id)+'</td></tr>').join("")+'</table></div>':'<p class="empty">Aucune note pour le moment.</p>';
+  h+=rows.length?'<div class="scroll"><table><tr><th>Étudiant</th><th>Matière</th><th>Interro</th><th>Docteur</th><th>Note</th><th>Date</th><th></th></tr>'+rows.map(n=>'<tr><td>'+esc(sname(n.sid))+'</td><td>'+esc(n.subject)+'</td><td>'+esc(n.title)+'</td><td>'+esc(n.teacher||"")+'</td><td>'+esc(n.teacher||"")+'</td><td>'+esc(n.teacher||"")+'</td><td class="num '+(n.score/n.max<.5?"low":"good")+'">'+n.score+'/'+n.max+'</td><td>'+fd(n.date)+'</td><td>'+del("notes",n.id)+'</td></tr>').join("")+'</table></div>':'<p class="empty">Aucune note pour le moment.</p>';
   h+='</div>';
   if(admin)h+=fastNotes();
-  if(admin)h+='<div class="card"><b>Ajouter une note</b><div class="row"><select id="n_s">'+opts()+'</select><input id="n_m" placeholder="Matière"><input id="n_t" placeholder="Intitulé (ex. Interro 2)"><input id="n_sc" type="number" step="0.25" placeholder="Note"><input id="n_x" type="number" value="20" placeholder="Sur"><input id="n_d" type="date" value="'+today()+'"></div><div class="row"><button class="act" data-a="addn">Ajouter la note</button></div></div>';
+  if(admin)h+='<div class="card"><b>Ajouter une note</b><div class="row"><select id="n_s">'+opts()+'</select><input id="n_m" placeholder="Matière"><input id="n_t" placeholder="Intitulé (ex. Interro 2)"><input id="n_e" placeholder="Docteur (ex. Dr Koffi)"><input id="n_sc" type="number" step="0.25" placeholder="Note"><input id="n_x" type="number" value="20" placeholder="Sur"><input id="n_d" type="date" value="'+today()+'"></div><div class="row"><button class="act" data-a="addn">Ajouter la note</button></div></div>';
   return h;
 }
 function vDevoirs(){
@@ -235,7 +235,7 @@ function sorted(){return [...D.students].sort((a,b)=>a.name.localeCompare(b.name
 function fmsg(k){return FM[k]?'<p class="fm'+(FM[k].e?" er":"")+'">'+esc(FM[k].t)+'</p>':"";}
 function fastNotes(){
   const q=norm(FQ.n.q),st=sorted();
-  let h='<details class="card" data-fo="n" '+(FQ.o.n?"open":"")+'><summary><b>Saisie rapide de toute la classe</b></summary><p class="sub" style="margin:8px 0 0">Remplis une fois la matière et l’intitulé, puis tape la note de chaque étudiant. Laisse vide ceux qui n’en ont pas.</p><div class="row"><input data-fn="m" placeholder="Matière" value="'+esc(FQ.n.m)+'"><input data-fn="t" placeholder="Intitulé (ex. Interro 2)" value="'+esc(FQ.n.t)+'"><input data-fn="x" type="number" placeholder="Sur" value="'+esc(FQ.n.x)+'"><input data-fn="d" type="date" value="'+esc(FQ.n.d)+'"></div><div class="row"><input data-fq="n" type="search" placeholder="Chercher un étudiant" value="'+esc(FQ.n.q)+'"></div><div style="margin-top:8px">';
+  let h='<details class="card" data-fo="n" '+(FQ.o.n?"open":"")+'><summary><b>Saisie rapide de toute la classe</b></summary><p class="sub" style="margin:8px 0 0">Remplis une fois la matière et l’intitulé, puis tape la note de chaque étudiant. Laisse vide ceux qui n’en ont pas.</p><div class="row"><input data-fn="m" placeholder="Matière" value="'+esc(FQ.n.m)+'"><input data-fn="t" placeholder="Intitulé (ex. Interro 2)" value="'+esc(FQ.n.t)+'"><input data-fn="e" placeholder="Docteur (ex. Dr Koffi)" value="'+esc(FQ.n.e||"")+'"><input data-fn="x" type="number" placeholder="Sur" value="'+esc(FQ.n.x)+'"><input data-fn="d" type="date" value="'+esc(FQ.n.d)+'"></div><div class="row"><input data-fq="n" type="search" placeholder="Chercher un étudiant" value="'+esc(FQ.n.q)+'"></div><div style="margin-top:8px">';
   h+=st.length?st.map(s=>'<label class="fr" data-nm="'+esc(norm(s.name))+'"'+(q&&!norm(s.name).includes(q)?' style="display:none"':"")+'><span>'+esc(s.name)+'</span><input class="sc" type="number" inputmode="decimal" step="0.25" min="0" data-fs="'+s.id+'" value="'+esc(FQ.n.sc[s.id]||"")+'" placeholder="—"></label>').join(""):'<p class="empty">Ajoute d’abord les étudiants dans l’onglet Étudiants.</p>';
   return h+'</div>'+fmsg("n")+'<div class="row"><button class="act" data-a="fastn">Enregistrer les notes</button></div></details>';
 }
@@ -255,7 +255,7 @@ function saveFastN(){
     if(v==="")continue;
     const n=parseFloat(v);
     if(isNaN(n)||n<0||n>mx){FM.n={t:"Vérifie la note de "+s.name+" (entre 0 et "+mx+").",e:true};render();return;}
-    add.push({id:uid(),sid:s.id,subject:f.m.trim(),title:f.t.trim(),teacher:(f.e||"").trim(),score:n,max:mx,date:f.d||today()});
+    add.push({id:uid(),sid:s.id,subject:f.m.trim(),title:f.t.trim(),teacher:(f.e||"").trim(),teacher:(f.e||"").trim(),score:n,max:mx,date:f.d||today()});
   }
   if(!add.length){FM.n={t:"Aucune note saisie.",e:true};render();return;}
   add.forEach(x=>D.notes.push(x));
@@ -300,7 +300,7 @@ document.addEventListener("click",e=>{
   else if(a==="fasta"){saveFastA();}
   else if(a==="gh"){askToken().then(v=>{msg=v?"Clé enregistrée sur cet appareil.":"";render();});}
   else if(a==="del"){const k=b.dataset.k;D[k]=D[k].filter(x=>x.id!==b.dataset.i);touch();}
-  else if(a==="addn"){const sc=parseFloat(g("n_sc")),mx=parseFloat(g("n_x"))||20;if(isNaN(sc)||!g("n_t"))return;D.notes.push({id:uid(),sid:g("n_s"),subject:g("n_m"),title:g("n_t"),score:sc,max:mx,date:g("n_d")||today()});touch();}
+  else if(a==="addn"){const sc=parseFloat(g("n_sc")),mx=parseFloat(g("n_x"))||20;if(isNaN(sc)||!g("n_t"))return;D.notes.push({id:uid(),sid:g("n_s"),subject:g("n_m"),title:g("n_t"),teacher:g("n_e"),score:sc,max:mx,date:g("n_d")||today()});touch();}
   else if(a==="addd"){if(!g("d_t"))return;D.devoirs.push({id:uid(),subject:g("d_m"),title:g("d_t"),due:g("d_d")||today()});touch();}
   else if(a==="addb"){const h=parseFloat(g("b_h"));if(isNaN(h))return;D.absences.push({id:uid(),sid:g("b_s"),hours:h,date:g("b_d")||today(),reason:g("b_r")});touch();}
   else if(a==="adds"){const L=($("s_n")?$("s_n").value:"").split("\n").map(x=>x.trim()).filter(Boolean);if(!L.length)return;L.forEach(n=>D.students.push({id:uid(),name:n}));touch();}
