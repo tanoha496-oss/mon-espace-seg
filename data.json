@@ -1,5 +1,5 @@
 {
- "updated": "07/11/2026",
+ "updated": "08/11/2026",
  "students": [
   {
    "id": "xkx5d3",
@@ -454,7 +454,17 @@
    "name": "ZEBLI BOUEDOU YANN JORIS"
   }
  ],
- "notes": [],
+ "notes": [
+  {
+   "id": "k362oc",
+   "sid": "hean2k",
+   "subject": "eco",
+   "title": "interro 01",
+   "score": 18,
+   "max": 20,
+   "date": "2026-11-08"
+  }
+ ],
  "devoirs": [],
  "absences": []
 }
