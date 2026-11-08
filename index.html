@@ -314,7 +314,27 @@ document.addEventListener("input",e=>{
   else if(d.fq){FQ[d.fq].q=e.target.value;const q=norm(e.target.value);e.target.closest("details").querySelectorAll(".fr").forEach(r=>{r.style.display=(!q||r.dataset.nm.includes(q))?"":"none";});}
 });
 document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const t=e.target;if(!t||!t.classList||!t.classList.contains("sc"))return;e.preventDefault();let r=t.closest(".fr");while(r){r=r.nextElementSibling;if(r&&r.style.display!=="none"){const n=r.querySelector("input.sc");if(n){n.focus();n.select();break;}}}}); document.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.fo)FQ.o[d.dataset.fo]=d.open;},true);
-load();
+const PG="9fd47040d08e76318b202ebc9e1a868e99f80e9bd302dbe622f8061081669f44";
+function openGate(){
+  const p=openPad(async v=>{try{return (await sha(v.trim()))===PG;}catch(e){return false;}});
+  const o=document.querySelector(".ov");
+  o.querySelector("h2").textContent="Mon espace SEG";
+  o.querySelector("#pm").textContent="Entre le mot de passe de la classe";
+  const c=o.querySelector(".cancel");if(c)c.remove();
+  return p;
+}
+(async function(){
+  const mn=document.querySelector("main");
+  let ok=false;
+  try{ok=localStorage.getItem("seg_ok")==="1"||localStorage.getItem("seg_admin")==="1";}catch(e){}
+  if(!ok){
+    mn.style.visibility="hidden";
+    while(!ok){ok=await openGate();}
+    try{localStorage.setItem("seg_ok","1");}catch(e){}
+  }
+  mn.style.visibility="";
+  load();
+})();
 </script>
 </body>
 </html>
