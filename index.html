@@ -236,7 +236,7 @@ function fmsg(k){return FM[k]?'<p class="fm'+(FM[k].e?" er":"")+'">'+esc(FM[k].t
 function fastNotes(){
   const q=norm(FQ.n.q),st=sorted();
   let h='<details class="card" data-fo="n" '+(FQ.o.n?"open":"")+'><summary><b>Saisie rapide de toute la classe</b></summary><p class="sub" style="margin:8px 0 0">Remplis une fois la matière et l’intitulé, puis tape la note de chaque étudiant. Laisse vide ceux qui n’en ont pas.</p><div class="row"><input data-fn="m" placeholder="Matière" value="'+esc(FQ.n.m)+'"><input data-fn="t" placeholder="Intitulé (ex. Interro 2)" value="'+esc(FQ.n.t)+'"><input data-fn="e" placeholder="Docteur (ex. Dr Koffi)" value="'+esc(FQ.n.e||"")+'"><input data-fn="x" type="number" placeholder="Sur" value="'+esc(FQ.n.x)+'"><input data-fn="d" type="date" value="'+esc(FQ.n.d)+'"></div><div class="row"><input data-fq="n" type="search" placeholder="Chercher un étudiant" value="'+esc(FQ.n.q)+'"></div><div style="margin-top:8px">';
-  h+=st.length?st.map(s=>'<label class="fr" data-nm="'+esc(norm(s.name))+'"'+(q&&!norm(s.name).includes(q)?' style="display:none"':"")+'><span>'+esc(s.name)+'</span><input class="sc" type="number" inputmode="decimal" step="0.25" min="0" data-fs="'+s.id+'" value="'+esc(FQ.n.sc[s.id]||"")+'" placeholder="—"></label>').join(""):'<p class="empty">Ajoute d’abord les étudiants dans l’onglet Étudiants.</p>';
+  h+=st.length?st.map(s=>'<label class="fr" data-nm="'+esc(norm(s.name))+'"'+(q&&!norm(s.name).includes(q)?' style="display:none"':"")+'><span>'+esc(s.name)+'</span><input class="sc" enterkeyhint="next" type="number" inputmode="decimal" step="0.25" min="0" data-fs="'+s.id+'" value="'+esc(FQ.n.sc[s.id]||"")+'" placeholder="—"></label>').join(""):'<p class="empty">Ajoute d’abord les étudiants dans l’onglet Étudiants.</p>';
   return h+'</div>'+fmsg("n")+'<div class="row"><button class="act" data-a="fastn">Enregistrer les notes</button></div></details>';
 }
 function fastAbs(){
@@ -313,7 +313,7 @@ document.addEventListener("input",e=>{
   else if(d.fa){FQ.a[d.fa]=e.target.value;}
   else if(d.fq){FQ[d.fq].q=e.target.value;const q=norm(e.target.value);e.target.closest("details").querySelectorAll(".fr").forEach(r=>{r.style.display=(!q||r.dataset.nm.includes(q))?"":"none";});}
 });
-document.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.fo)FQ.o[d.dataset.fo]=d.open;},true);
+document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const t=e.target;if(!t||!t.classList||!t.classList.contains("sc"))return;e.preventDefault();let r=t.closest(".fr");while(r){r=r.nextElementSibling;if(r&&r.style.display!=="none"){const n=r.querySelector("input.sc");if(n){n.focus();n.select();break;}}}}); document.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.fo)FQ.o[d.dataset.fo]=d.open;},true);
 load();
 </script>
 </body>
