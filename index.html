@@ -325,14 +325,12 @@ function openGate(){
 }
 (async function(){
   const mn=document.querySelector("main");
+  mn.style.visibility="hidden";
   let ok=false;
-  try{ok=localStorage.getItem("seg_ok")==="1"||localStorage.getItem("seg_admin")==="1";}catch(e){}
-  if(!ok){
-    mn.style.visibility="hidden";
-    while(!ok){ok=await openGate();}
-    try{localStorage.setItem("seg_ok","1");}catch(e){}
-  }
+  while(!ok){ok=await openGate();}
   mn.style.visibility="";
+  load();
+})();
   load();
 })();
 </script>
