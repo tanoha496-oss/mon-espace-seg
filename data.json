@@ -454,28 +454,7 @@
    "name": "ZEBLI BOUEDOU YANN JORIS"
   }
  ],
- "notes": [
-  {
-   "id": "xu1s83",
-   "sid": "z7ml5l",
-   "subject": "ETUDE DE DROIT",
-   "title": "INTERRO 01",
-   "teacher": "MR ATTA",
-   "score": 14,
-   "max": 20,
-   "date": "2026-11-04"
-  },
-  {
-   "id": "5g4cd1",
-   "sid": "z7ml5l",
-   "subject": "ETUDE DE DROIT",
-   "title": "INTERRO 02",
-   "teacher": "MR ATTA",
-   "score": 15,
-   "max": 20,
-   "date": "2026-11-04"
-  }
- ],
+ "notes": [],
  "devoirs": [],
  "absences": []
 }
