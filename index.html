@@ -180,7 +180,7 @@ function openPad(check){
 async function toggleAdmin(){
   if(admin){admin=false;try{localStorage.setItem("seg_admin","0")}catch(e){}render();return;}
   const ok=await openPad(async p=>{try{return (await sha(p.trim()))===PH;}catch(e){return false;}});
-  if(ok){admin=true;msg="";try{localStorage.setItem("seg_admin","1");const d=localStorage.getItem(LS);if(d){D=JSON.parse(d);dirty=true;}}catch(e){}}
+  if(ok){admin=true;msg="";try{localStorage.setItem("seg_admin","1");const d=localStorage.getItem(LS);if(d&&d!==localStorage.getItem("seg_pub")){D=JSON.parse(d);dirty=true;}}catch(e){}}
   render();
 }
 const OWNER="tanoha496-oss",REPO="mon-espace-seg",BR="main",FILE="data.json";
@@ -215,7 +215,14 @@ async function publishGH(){
     const body=JSON.stringify(D,null,1);
     const g=await fetch(url+"?ref="+BR,{headers:H,cache:"no-store"});
     let sha;
-    if(g.ok){sha=(await g.json()).sha;}else if(g.status!==404)throw g;
+    if(g.ok){
+      const gj=await g.json();sha=gj.sha;
+      try{
+        const R=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(gj.content.replace(/\s/g,"")),c=>c.charCodeAt(0))));
+        const lost=["notes","absences","devoirs","students"].filter(k=>(R[k]||[]).length>(D[k]||[]).length).map(k=>k+" : "+(R[k]||[]).length+" en ligne, "+(D[k]||[]).length+" ici");
+        if(lost.length&&!confirm("ATTENTION : la version publiée contient plus de données que la tienne ("+lost.join(" ; ")+"). Publier va effacer ces données. Publier quand même ?")){pst="idle";msg="Publication annulée, rien n'a été modifié. Clique sur « Repartir de la version publiée » puis refais ta saisie.";render();return;}
+      }catch(e){}
+    }else if(g.status!==404)throw g;
     const r=await fetch(url,{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify({message:"Mise à jour des données",content:b64(body),sha:sha,branch:BR})});
     if(!r.ok)throw r;
     dirty=false;
@@ -255,7 +262,7 @@ function saveFastN(){
     if(v==="")continue;
     const n=parseFloat(v);
     if(isNaN(n)||n<0||n>mx){FM.n={t:"Vérifie la note de "+s.name+" (entre 0 et "+mx+").",e:true};render();return;}
-    add.push({id:uid(),sid:s.id,subject:f.m.trim(),title:f.t.trim(),teacher:(f.e||"").trim(),teacher:(f.e||"").trim(),score:n,max:mx,date:f.d||today()});
+    add.push({id:uid(),sid:s.id,subject:f.m.trim(),title:f.t.trim(),teacher:(f.e||"").trim(),score:n,max:mx,date:f.d||today()});
   }
   if(!add.length){FM.n={t:"Aucune note saisie.",e:true};render();return;}
   add.forEach(x=>D.notes.push(x));
@@ -283,7 +290,7 @@ async function load(){
   let ok=false;
   try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(r.ok){D=await r.json();ok=true;}}catch(e){}
   if(!ok)msg="Impossible de charger les données. Vérifie ta connexion.";
-  try{if(localStorage.getItem("seg_admin")==="1"){admin=true;const d=localStorage.getItem(LS);if(d){D=JSON.parse(d);dirty=d!==localStorage.getItem("seg_pub");}}}catch(e){}
+  try{if(localStorage.getItem("seg_admin")==="1"){admin=true;const d=localStorage.getItem(LS);if(d&&d!==localStorage.getItem("seg_pub")){D=JSON.parse(d);dirty=true;}}}catch(e){}
   render();
   if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
@@ -331,8 +338,6 @@ function openGate(){
   mn.style.visibility="";
   load();
 })();
-  
-
 </script>
 </body>
 </html>
