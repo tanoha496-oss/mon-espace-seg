@@ -1,5 +1,5 @@
 {
- "updated": "10/11/2026",
+ "updated": "14/11/2026",
  "students": [
   {
    "id": "xkx5d3",
@@ -2634,6 +2634,776 @@
    "score": 15,
    "max": 20,
    "date": "2026-11-04"
+  },
+  {
+   "id": "gq2c9s",
+   "sid": "xkx5d3",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "9wjnb5",
+   "sid": "mcv84u",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "wzk28v",
+   "sid": "fqbe5g",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "tdhaia",
+   "sid": "l3ovow",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "509csc",
+   "sid": "sywfrd",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "22aeo5",
+   "sid": "7l2o6d",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "egu44m",
+   "sid": "050etn",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "qwbbu9",
+   "sid": "pi3nxz",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "dngktj",
+   "sid": "ad0g5a",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "r4am80",
+   "sid": "gfdp7o",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "oftqsw",
+   "sid": "lii18e",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "5l5c5b",
+   "sid": "9kiiyc",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 12,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "1l0ogc",
+   "sid": "oozd6u",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "itb1b4",
+   "sid": "4spcd3",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "0kexfi",
+   "sid": "nfjkam",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "cuzkdq",
+   "sid": "4dy5t7",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "42vpq5",
+   "sid": "22rqf7",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "nt5cfa",
+   "sid": "2ns3vr",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "wyetwp",
+   "sid": "3m5f7q",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "j96ufs",
+   "sid": "fpuvvi",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "3kbnwb",
+   "sid": "lknc61",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "uudne3",
+   "sid": "8l0fnz",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "ecq3ec",
+   "sid": "64dfp2",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "76kr6m",
+   "sid": "qey8pz",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "8sx4qs",
+   "sid": "rijurf",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "glmben",
+   "sid": "31yfq5",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "o9pzye",
+   "sid": "ykuo96",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "gekd8b",
+   "sid": "lqjcua",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "pnrfyn",
+   "sid": "zen338",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "rsqzlh",
+   "sid": "kw40cr",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "wnoabx",
+   "sid": "vte1gk",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "7jrd78",
+   "sid": "nvschg",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "8aqxuf",
+   "sid": "oqaa78",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "p6qg8t",
+   "sid": "zjdzu8",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "8z1qj2",
+   "sid": "z7ml5l",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 13,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "torhv7",
+   "sid": "imoojs",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "z7cx3x",
+   "sid": "wa2sub",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "9mlkto",
+   "sid": "tifenu",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "y7qn73",
+   "sid": "wxs9hs",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "vw2drl",
+   "sid": "cb6w0k",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "kpr9g4",
+   "sid": "ujmeht",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 13,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "oxv8ts",
+   "sid": "hg7qzh",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "dlk5j2",
+   "sid": "ug8mh9",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "r1zbmu",
+   "sid": "w2lx7d",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "8rboap",
+   "sid": "f2o47w",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "auo32h",
+   "sid": "sz21xz",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 12,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "w3jlj7",
+   "sid": "dgm41c",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "fwksna",
+   "sid": "xdg4kx",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "7qaahg",
+   "sid": "zdm5jt",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "6dtgyw",
+   "sid": "1b20ci",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "hv0s24",
+   "sid": "ourd59",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "55c6l7",
+   "sid": "wu1nvq",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "7s66jh",
+   "sid": "jj6x36",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 12,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "73qa7j",
+   "sid": "d9wlcv",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "topr9l",
+   "sid": "5qhbkf",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "pn7kuu",
+   "sid": "ft9ctl",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "eu5vds",
+   "sid": "0pnii8",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "k8mpx4",
+   "sid": "8fk0pt",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "459buc",
+   "sid": "4up1n0",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "08kllp",
+   "sid": "wdl181",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "jehpt3",
+   "sid": "d29jmf",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "5gc4in",
+   "sid": "zsuhcp",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "nm3axh",
+   "sid": "j0z5gr",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "4b03oy",
+   "sid": "636jb0",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "2v0wa4",
+   "sid": "6ba986",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "lk0ik8",
+   "sid": "ndqq2z",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "y0c965",
+   "sid": "hean2k",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 14,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "1cna2h",
+   "sid": "i3ge5o",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "6l8g2l",
+   "sid": "15czuh",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "7z599j",
+   "sid": "2b4exp",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "jkjdfs",
+   "sid": "809sqs",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "m2nbyu",
+   "sid": "t5glq6",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "3vycs6",
+   "sid": "wuqxd1",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 13,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "pc7hm8",
+   "sid": "gv7wzg",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "m70xig",
+   "sid": "36agq6",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 11,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "37kc7h",
+   "sid": "ubmixd",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 12,
+   "max": 20,
+   "date": "2026-10-07"
+  },
+  {
+   "id": "7jy5cf",
+   "sid": "0xbv1o",
+   "subject": "ECONOMIE NUMERIQUE",
+   "title": "NOTE INDIVIDUELLE EXPOSE",
+   "teacher": "KOFFI MARTINIEN",
+   "score": 10,
+   "max": 20,
+   "date": "2026-10-07"
   }
  ],
  "devoirs": [],
