@@ -467,6 +467,134 @@ function openGate(){
   mn.style.visibility="";
   load();
 })();
-</script>
+/* Corriger des notes déjà publiées et compléter les notes manquantes */
+(function(){
+  var S={k:"",f:"all",q:"",sc:{},o:false,m:null};
+
+  function interros(){
+    var M=new Map();
+    D.notes.forEach(function(n){
+      var k=nk(n.subject)+"|"+nk(n.title);
+      if(!M.has(k))M.set(k,{k:k,subject:n.subject||"",title:n.title||"",teacher:"",max:n.max,date:n.date||"",notes:[],byS:{}});
+      var I=M.get(k);
+      I.notes.push(n);
+      if(!I.teacher&&n.teacher)I.teacher=n.teacher;
+      if(!I.byS[n.sid])I.byS[n.sid]=n;
+    });
+    return Array.from(M.values()).map(function(I){
+      I.allH=I.notes.every(function(n){return n.h;});
+      return I;
+    }).sort(function(a,b){return String(b.date).localeCompare(String(a.date));});
+  }
+  function curI(){return interros().find(function(x){return x.k===S.k;});}
+
+  function html(){
+    var L=interros(),I=L.find(function(x){return x.k===S.k;}),st=sorted(),q=norm(S.q);
+    var h='<details class="card" data-co="1" '+(S.o?"open":"")+'><summary><b>✏️ Corriger une interro déjà enregistrée</b></summary><p class="sub" style="margin:8px 0 0">Choisis l’interro : tous les étudiants s’affichent avec leur note actuelle. Corrige une erreur, ou remplis la note d’un étudiant qui n’en avait pas (ou qui avait 0 par erreur). Seules les lignes que tu changes sont modifiées : toutes les autres notes restent exactement comme elles sont.</p>';
+    if(!L.length)return h+'<p class="empty">Aucune note enregistrée pour le moment.</p></details>';
+    h+='<div class="row"><select data-cf="k"><option value="">Choisis une interro…</option>'+L.map(function(x){
+      var miss=st.filter(function(s){return !x.byS[s.id];}).length;
+      return '<option value="'+esc(x.k)+'"'+(x.k===S.k?" selected":"")+'>'+esc((x.subject||"Sans matière")+" · "+x.title+" · "+fd(x.date)+(miss?" · "+miss+" sans note":""))+'</option>';
+    }).join("")+'</select></div>';
+    if(!I)return h+'</details>';
+    h+='<p class="sub" style="margin:10px 0 0">'+esc((I.subject||"Sans matière")+" · "+I.title+(I.teacher?" · "+I.teacher:"")+" · sur "+I.max+" · "+fd(I.date))+'</p>';
+    var F=[["all","Tous les étudiants"],["none","Sans note seulement"],["zero","Notes à 0 seulement"]];
+    h+='<div class="row"><select data-cf="f">'+F.map(function(x){return '<option value="'+x[0]+'"'+(S.f===x[0]?" selected":"")+'>'+x[1]+'</option>';}).join("")+'</select><input data-cq="1" type="search" placeholder="Chercher un étudiant" value="'+esc(S.q)+'"></div><div style="margin-top:8px">';
+    var rows=st.filter(function(s){
+      var ex=I.byS[s.id];
+      return S.f==="none"?!ex:S.f==="zero"?(!!ex&&ex.score===0):true;
+    });
+    h+=rows.length?rows.map(function(s){
+      var ex=I.byS[s.id],v=(s.id in S.sc)?S.sc[s.id]:(ex?String(ex.score):"");
+      return '<label class="fr" data-nm="'+esc(norm(s.name))+'"'+(q&&norm(s.name).indexOf(q)<0?' style="display:none"':"")+'><span>'+esc(s.name)+'</span><em class="stt"></em><input class="sc" enterkeyhint="next" type="number" inputmode="decimal" step="0.25" min="0" data-cs="'+s.id+'" value="'+esc(v)+'" placeholder="—"></label>';
+    }).join(""):'<p class="empty">Aucun étudiant dans cette liste.</p>';
+    h+='</div>'+(S.m?'<p class="fm'+(S.m.e?" er":"")+'">'+esc(S.m.t)+'</p>':"")+'<div class="row"><button class="act" data-ca="save">Enregistrer les corrections</button></div><p class="sub">Pour supprimer complètement une note, utilise le ✕ dans le tableau plus haut.</p></details>';
+    return h;
+  }
+
+  function stat(inp,I){
+    I=I||curI();if(!I)return;
+    var ex=I.byS[inp.dataset.cs],cur=String(inp.value||"").trim(),nv=parseFloat(cur.replace(",",".")),t="",c="";
+    if(ex){
+      if(cur===""){t="vide : inchangée";c="n";}
+      else if(nv!==ex.score){t="modifiée ("+ex.score+" → "+cur+")";c="m";}
+      else if(ex.score===0){t="0 : à vérifier";c="m";}
+    }else{
+      if(cur!==""){t="nouvelle";c="d";}else{t="sans note";c="n";}
+    }
+    var s=inp.closest(".fr").querySelector(".stt");
+    if(s){s.textContent=t;s.className="stt "+c;}
+    inp.className="sc "+c;
+  }
+  function refresh(){
+    var I=curI();
+    document.querySelectorAll("input[data-cs]").forEach(function(i){stat(i,I);});
+  }
+
+  function save(){
+    var I=curI();
+    if(!I){S.m={t:"Choisis d’abord une interro.",e:true};render();return;}
+    var L=[];
+    for(var i=0;i<D.students.length;i++){
+      var s=D.students[i];
+      if(!(s.id in S.sc))continue;
+      var v=String(S.sc[s.id]).replace(",",".").trim();
+      if(v==="")continue;
+      var n=parseFloat(v),ex=I.byS[s.id],mx=ex?ex.max:(I.max||20);
+      if(isNaN(n)||n<0||n>mx){S.m={t:"Vérifie la note de "+s.name+" (entre 0 et "+mx+").",e:true};render();return;}
+      L.push({s:s,n:n,ex:ex});
+    }
+    var na=0,nm=0;
+    L.forEach(function(x){
+      if(!x.ex){
+        var o={id:uid(),sid:x.s.id,subject:I.subject,title:I.title,teacher:I.teacher,score:x.n,max:I.max||20,date:I.date||today()};
+        if(I.allH)o.h=true;
+        D.notes.push(o);na++;
+      }else if(x.ex.score!==x.n){x.ex.score=x.n;nm++;}
+    });
+    S.sc={};
+    if(na||nm){
+      var p=[];
+      if(na)p.push(na+" ajoutée(s)");
+      if(nm)p.push(nm+" modifiée(s)");
+      touch();
+      S.m={t:p.join(", ")+". Clique sur « Publier pour la classe » pour les envoyer.",e:false};
+    }else S.m={t:"Aucun changement : rien n’a été modifié.",e:false};
+    render();
+  }
+
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-ca]");
+    if(b&&admin)save();
+  });
+  document.addEventListener("change",function(e){
+    var t=e.target;
+    if(!t.dataset||!t.dataset.cf)return;
+    if(t.dataset.cf==="k"){S.k=t.value;S.sc={};S.q="";S.f="all";S.m=null;}
+    else S.f=t.value;
+    render();
+  });
+  document.addEventListener("input",function(e){
+    var t=e.target,d=t.dataset;
+    if(!d)return;
+    if(d.cs!==undefined){S.sc[d.cs]=t.value;stat(t);}
+    else if(d.cq!==undefined){
+      S.q=t.value;
+      var qq=norm(t.value);
+      t.closest("details").querySelectorAll(".fr").forEach(function(r){r.style.display=(!qq||r.dataset.nm.indexOf(qq)>-1)?"":"none";});
+    }
+  });
+  document.addEventListener("toggle",function(e){
+    if(e.target.dataset&&e.target.dataset.co)S.o=e.target.open;
+  },true);
+
+  var _fast=window.fastNotes;
+  window.fastNotes=function(){return _fast()+html();};
+  var _render=window.render;
+  window.render=function(){
+    _render();
+    if(admin&&tab==="notes"&&document.querySelector("input[data-cs]"))refresh();
+  };
+})();</script>
 </body>
 </html>
